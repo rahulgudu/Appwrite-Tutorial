@@ -1,13 +1,17 @@
-'use client'
-import { useState } from 'react'
+"use client";
+import { useState } from "react";
+import { addNote } from "../actions/notesActions";
 
 const NewNoteForm = () => {
-  const [content, setContent] = useState('')
+  const [content, setContent] = useState("");
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-
-  }
+    e.preventDefault();
+    if (content.trim() !== "") {
+      await addNote(content);
+      setContent("");
+    }
+  };
 
   return (
     <form onSubmit={handleSubmit}>
@@ -21,4 +25,4 @@ const NewNoteForm = () => {
   );
 };
 
-export default NewNoteForm
+export default NewNoteForm;
