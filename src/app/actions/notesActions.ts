@@ -32,3 +32,11 @@ export async function getNotes(): Promise<Note[]> {
 
   return notes;
 }
+
+export async function deleteNode(noteId: string) {
+  await databases.deleteDocument(
+    "6795bf360025d6ede5ec",
+    "6795bf48000e185e7d57",
+    noteId
+  );
+}

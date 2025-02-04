@@ -1,12 +1,17 @@
-'use client'
-import { useState} from 'react'
+"use client";
+import { useState } from "react";
+import { deleteNode } from "../actions/notesActions";
 
 export default function NoteList({ initialNotes }: { initialNotes: Note[] }) {
-  const [notes, setNotes] = useState<Note[]>(initialNotes)
+  const [notes, setNotes] = useState<Note[]>(initialNotes);
 
   const handleDelete = async (noteId: string) => {
- 
-  }
+    const element = document.getElementById(noteId);
+    if (element) {
+      element.classList.add("crossed-out");
+    }
+    await deleteNode(noteId);
+  };
 
   return (
     <ul>
@@ -16,5 +21,5 @@ export default function NoteList({ initialNotes }: { initialNotes: Note[] }) {
         </li>
       ))}
     </ul>
-  )
+  );
 }
